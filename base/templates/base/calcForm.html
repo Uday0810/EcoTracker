@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<br>
+<br>
+<h1 class="lbd1 text-focus-in">Calculate:</h1>
+<pre class="lbd-content">Input the values that you want to calculate your carbon footprint based on.
+    Mind the units please :)</pre>
+<br>
+<br>
+
+<div class="form-container">
+    <form method="POST" action="" id = "user-input-form" onsubmit="calculateCF(event);">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Calculate" />   
+    </form>
+    <script>
+        function calculateCF() {
+            console.log("Form Submitted")
+            e.preventDefault()
+            var form = document.getElementById('user-input-form');
+            var formData = new FormData(form);
+        
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cf-input').value = data.result;
+            });
+            console.log("Calculated")
+        }
+        </script>
+        
+</div>
+<br>
+<br>
+
+{% endblock content %}

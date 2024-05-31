@@ -1,0 +1,98 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+    <!--
+    {% for room in rooms %}
+    <div>
+        <h5>{{room.id}} -- <a href="{% url 'room' room.id %}">{{room.name}}</a>></h5>
+    </div>
+    {% endfor %}
+    -->
+
+   <!--
+    <div class="card border-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-primary">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+-->
+<div id="home-text">
+
+        <pre id="text">
+            <h1 class="tracking-in-contract-bck"> EcoTracker</h1>
+            <h5>
+            Discover the power of small actions for a big impact.
+            EcoTracker is your companion on the journey towards a sustainable lifestyle.
+            Calculate your carbon footprint, join challenges, and track your progress as you
+            contribute to a greener, more eco-friendly world. Every step matters.
+            Let's make a difference together! </h5>
+        </pre>
+        <img src = "{% static 'images\Screenshot_2023-12-10_214350-removebg-preview.png' %}" id = "leaf">
+</div>
+
+<div class="cards swing-in-top-fwd text-focus-in">
+    <div class="calc_card">
+        <a href="{% url 'calculate-CF' %}">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Calculate</div>
+                <div class="card-body">
+                    <h5 class="card-title">CALCULATOR</h5>
+                    <p class="card-text">Saving the planet is the only workout that doesn't require a gym membership! Find out if your carbon shoes are leaving a larger eco-imprint than your actual footprints.</p>
+                </div>
+            </div>        
+        </a>
+        </div>
+
+    <div class="lbd_card">
+    <a href = "{% url 'leaderboard' %}" text-decoration="none" >
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;"> 
+            <div class="card-header">Compete</div>
+            <div class="card-body">
+                <h5 class="card-title">LEADERBOARD</h5>
+                <p class="card-text">Top Eco-Warriors on the Leaderboard: These folks emit less CO2 than a sloth on a Sunday nap! Join the race to save the planet and show your carbon footprint who's boss.</p>
+            </div>
+        </div>
+    </a>
+    </div>
+
+    <div class="challenges_card">
+    <a href="{% url 'challenges' %}">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Grow</div>
+            <div class="card-body">
+                <h5 class="card-title">CHALLENGES</h5>
+                <p class="card-text">Embark on eco-adventures: help us save the planet! Battle carbon monsters, outsmart energy vampires, it's time to level up your green game and become the ultimate sustainability superhero!"</p>
+            </div>
+    </div>
+    </a>
+    </div>
+</div>
+
+<br>
+<br>
+<div id="progress">
+<h2>Total Progress:</h2>
+  {% if request.user.reward %}
+    <p>{{ request.user.reward.progress }}%</p>
+  {% else %}
+    <p>No progress available.</p>
+  {% endif %}
+</div>
+
+
+<div class="progress mx-auto" style="width: 500px;">
+    <div class="progress-bar" role="progressbar" style="width: {{ request.user.reward.progress }}%;" aria-valuenow="{{ request.user.reward.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+<br>
+<br>
+<br>
+{% endblock content %}
+

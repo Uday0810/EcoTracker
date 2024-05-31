@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<br>
+<br>
+<h1 id="challenge-head" class="lbd1 text-focus-in">Challenges</h1>
+<br>
+<br>
+
+{% for challenge in challenges %}
+  <div class="card text-center chal">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Start Date: {{challenge.start_date}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">End Date: {{challenge.end_date}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ challenge.title }}</h5>
+      <p class="card-text">{{ challenge.description }}</p>
+      {% if challenge_completed %}
+          <p>Done!</p>
+      {% else %}
+          {% if user not in challenge.participants.all %}
+            <a href="{% url 'join_challenge' challenge.id %}" class="btn btn-primary join-btn">Join Challenge</a>
+            {% else %}
+              <p id="lol">You're already participating in this challenge!</p>
+              <br>
+              <a href="{% url 'log_action' challenge.id %}" class="btn btn-primary join-btn">Log Action</a>
+          {% endif %}
+      {% endif %}
+    </div>
+  </div>
+  <br>
+  <br>
+{% endfor %}
+
+<!--
+  <hr>
+  <h1>Challenges</h1>
+
+  <h2>All Challenges</h2>
+  <ul>
+    {% for challenge in challenges %}
+      <h2>{{ challenge.title }}</h2>
+        <p>{{ challenge.description }}</p>
+        <p>Start Date: {{challenge.start_date}} &emsp;&emsp;&emsp;&emsp; End Date: {{challenge.end_date}}</p>
+        {% if challenge_completed %}
+          <p>Done!</p>
+        {% else %}
+          {% if user not in challenge.participants.all %}
+              <a href="{% url 'join_challenge' challenge.id %}">Join Challenge</a>
+          {% else %}
+              <p>You're already participating in this challenge!</p>
+              <p><a href="{% url 'log_action' challenge.id %}">Log Action</a></p>
+          {% endif %}
+        {% endif %}
+    {% endfor %}
+  </ul>
+  
+  <br>
+  <br>
+  <br>
+  <hr>
+  <h2>Your Challenges</h2>
+  <ul>
+    {% for user_challenge in user_challenges %}
+      <li>{{ user_challenge.challenge.title }}</li>
+    {% endfor %}
+  </ul>
+  <h2>Total Progress:</h2>
+  {% if request.user.reward %}
+    <p>{{ request.user.reward.progress }}%</p>
+  {% else %}
+    <p>No progress available.</p>
+  {% endif %}
+-->
+{% endblock content %}
