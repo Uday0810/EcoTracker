@@ -1,1 +1,2 @@
 # EcoTracker
+"EcoTracker" serves as a dynamic ecosystem where users can create eco profiles, input data on their environmental practices, and engage in gamified challenges. The platform calculates and visualizes users' carbon footprints, fostering a deeper understanding of individual contributions to climate change. By promoting a sense of community through leaderboards and collaborative challenges, "EcoTracker" transforms sustainable living into an engaging and interactive experience.
