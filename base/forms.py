@@ -4,8 +4,6 @@ from django import forms
 
 class UserInputForm(ModelForm):
     class Meta:
-        #model = UserInput
-        #fields = '__all__'
         model = UserInput
         fields = ['twoWheeler','bus','trains','car','longHaulFlights','shortFlights','shortHaulFlights','ferry','naturalGas','coal','lpg',
                   'oil','metalBurned','glassBurned','paperBurned','organicWaste','electricityConsumed','waterConsumed','paperConsumed','cf']
