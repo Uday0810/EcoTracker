@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1 class="lbd1" style="padding-top: 50px;">{{ challenge.title }}</h1>
+<p class="lbd-content">{{ challenge.description }}</p>
+
+{% if challenge_completed %}
+<div style="padding-top: 50px;">
+<div class="form-container lbd-content">
+You have completed this challenge</div></div>
+{% else %}
+<div style="padding-top: 50px;">
+<div class="form-container">
+    <form method="post" action="{% url 'log_action' challenge.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="css-button-arrow--green">Log Action</button>
+    </form>
+</div>
+</div>
+{% endif %}
+<div style="padding-left: 44.5%; padding-top: 20px;">
+<button class="css-button-arrow--green">
+<a href="{% url 'challenges' %}" style="color: rgb(255, 255, 255);">Back to Challenges</a>
+</button>
+</div>
+<!--
+{% if challenge_completed %}
+<pre class="logaction">
+    
+    
+    
+    
+You have completed this challenge</pre>
+{% else %}
+    <form method="post" action="{% url 'log_action' challenge.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="css-button-arrow--green">Log Action</button>
+    </form>
+{% endif %}
+<a href="{% url 'challenges' %}" class="logaction">Back to Challenges</a>
+-->
+
+{% endblock content %}

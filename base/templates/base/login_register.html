@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div id="login">
+<div class="card border-secondary mb-3 log" style="max-width: 18rem;">
+    {% if page == 'login' %}
+    <div class="card-header">Login</div>
+    {% else %}
+    <div class="card-header">Register</div>
+    {% endif %}
+    <div class="card-body text-secondary">
+      
+      <p class="card-text">
+        {% if page == 'login' %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label class="log-text">Username:</label>
+        <input type="POST", name="username">
+
+        <label class="log-text"  style="padding-top: 15px;">Password:</label>
+        <input type="POST", name="password">
+
+
+        <div style="padding-top: 15px;"><input type="submit" name="Login"/></div>
+    </form>
+    <div class="log-text" style="padding-top: 15px;">Haven't signed up yet?</div>
+    <a href="{% url 'register' %}">Sign Up</a>
+</div>
+
+{% else %}
+
+<div class="log-text">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <input type="submit" name="Register" />
+    </form>
+    <p>Already Signed Up?</p>
+    <a href="{% url 'login' %}">Login</a>
+</div>
+{% endif %}
+      </p>
+    </div>
+</div>
+</div>
+<pre>
+
+
+
+
+
+
+</pre>
+  
+
+<!--
+<div>
+{% if page == 'login' %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label>Username:</label>
+        <input type="POST", name="username", placeholder="Enter Username">
+
+        <label>Password:</label>
+        <input type="POST", name="password", placeholder="Enter Password">
+
+
+        <input type="submit" name="Login" />
+    </form>
+    <p>Haven't signed up yet?</p>
+    <a href="{% url 'register' %}">Sign Up</a>
+</div>
+
+{% else %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <input type="submit" name="Register" />
+    </form>
+    <p>Already Signed Up?</p>
+    <a href="{% url 'login' %}">Login</a>
+</div>
+{% endif %}
+</div>
+-->
+
+
+{% endblock content %}

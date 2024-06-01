@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>{{room.name}}</h1>
+<!-- Additional content specific to the calculator room -->
+
+<!--
+{% for entry in leaderboard_entries %}
+    <p>User: {{ entry.user }}, Total CF: {{ entry.total_cf }}</p>
+{% endfor %}
+-->
+<section>
+  <h1 class="lbd1 text-focus-in">Leaderboard</h1>
+  <br>
+  <pre class="lbd-content">Check your <b>rank</b> among all our users! <b>Compete</b> with the world around you, 
+       <b>grow</b> together and work towards creating a healthy and green world <b>for generations 
+       and generations to come......</b></pre>
+  <br>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th class="header">Rank</th>
+          <th class="header">User</th>
+          <th class="header">Carbon Footprint</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        {% for entry in leaderboard_entries %}
+          <tr>
+            <td>{{ forloop.counter }}</td> {# Assigns a rank based on loop counter #}
+            <td>{{ entry.user }}</td>
+            <td>{{ entry.total_cf }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<br>
+<br>
+<script>
+  $(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+  }).resize();
+</script>
+
+{% endblock content %}
